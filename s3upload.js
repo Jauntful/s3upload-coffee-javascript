@@ -60,6 +60,11 @@
       this_s3upload = this;
       xhr = new XMLHttpRequest();
       xhr.open('GET', this.s3_sign_put_url + '?s3_object_type=' + file.type + '&s3_object_name=' + this.s3_object_name, true);
+      if (this.headers) {
+        for (var header in this.headers) {
+          xhr.setRequestHeader(header, this.headers[header]);
+        }
+      }
       xhr.overrideMimeType('text/plain; charset=x-user-defined');
       xhr.onreadystatechange = function(e) {
         var result;
