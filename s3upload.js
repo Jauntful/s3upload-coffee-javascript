@@ -1,3 +1,7 @@
+/*
+* https://github.com/Jauntful/s3upload-coffee-javascript
+*/
+
 (function() {
 
   window.S3Upload = (function() {
@@ -25,7 +29,11 @@
       for (option in options) {
         this[option] = options[option];
       }
-      this.handleFileSelect(document.getElementById(this.file_dom_selector));
+      if (this.file_dom_element) {
+        this.handleFileSelect(this.file_dom_element);
+      } else {
+        this.handleFileSelect(document.getElementById(this.file_dom_selector));
+      }
     }
 
     S3Upload.prototype.handleFileSelect = function(file_element) {
